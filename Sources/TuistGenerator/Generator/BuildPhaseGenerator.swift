@@ -71,16 +71,6 @@ final class BuildPhaseGenerator: BuildPhaseGenerating {
             )
         }
 
-        if target.supportsSources {
-            try generateSourcesBuildPhase(
-                files: target.sources,
-                coreDataModels: target.coreDataModels,
-                pbxTarget: pbxTarget,
-                fileElements: fileElements,
-                pbxproj: pbxproj
-            )
-        }
-
         try generateResourcesBuildPhase(
             path: path,
             target: target,
@@ -96,6 +86,16 @@ final class BuildPhaseGenerator: BuildPhaseGenerating {
             fileElements: fileElements,
             pbxproj: pbxproj
         )
+
+        if target.supportsSources {
+            try generateSourcesBuildPhase(
+                files: target.sources,
+                coreDataModels: target.coreDataModels,
+                pbxTarget: pbxTarget,
+                fileElements: fileElements,
+                pbxproj: pbxproj
+            )
+        }
 
         try generateAppExtensionsBuildPhase(
             path: path,
